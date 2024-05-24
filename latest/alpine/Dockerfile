@@ -24,7 +24,12 @@ RUN addgroup -g 1000 imagemagick \
   && git clone "https://github.com/ImageMagick/ImageMagick$([ "$(printf '%s' "${IMAGEMAGICK_VERSION}" | cut -c 1)" -eq '6' ] && echo '6').git" /tmp/ImageMagick/ \
   && cd /tmp/ImageMagick/ \
   && git checkout "${IMAGEMAGICK_VERSION}" \
-  && ./configure --with-png \
+  && ./configure \
+  --with-heic=yes \
+  --with-jpeg=yes \
+  --with-png=yes \
+  --with-tiff=yes \
+  --with-webp=yes
   && make \
   && make install \
   && ldconfig /usr/local/lib/ \
